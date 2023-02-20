@@ -1,0 +1,43 @@
+GET http://localhost:3001/cars
+
+###
+
+GET http://localhost:3001/cars/63f1c9618b0ae2c1eb25ff55
+
+###
+
+POST http://localhost:3001/cars
+Content-Type: application/json
+
+{
+    "modelYear": 2018,
+    "make": "Chevrolet Spark",
+    "currentOwner": "Miks Silis",
+    "registration": "ITY8908",
+    "address": "17 Wolf Road, Cincinnati, OH, 45778"
+
+}
+
+###
+
+DELETE http://localhost:3001/cars/63f350570056c9b3d3ff4c0a
+
+###
+
+PATCH http://localhost:3001/cars/63f1c9618b0ae2c1eb25ff55
+Content-Type: application/json
+
+{
+    "address": "2606 Morningdale Ct, Cincinnati, OH 45211"
+}
+
+###
+
+PATCH  http://localhost:3001/cars
+Content-Type: application/json
+
+{
+    
+    "oldValue": "Gordon Smith",
+    "newValue": "Miks Silis"
+}
