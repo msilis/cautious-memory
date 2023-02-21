@@ -5,7 +5,6 @@ const Car = require("../models/car");
 //Get all cars from database
 
 router.get("/", async (req, res) => {
-  console.log("It came from Line 8")
   try {
     const cars = await Car.find();
     console.log("This came from Car.find()")
@@ -79,6 +78,17 @@ router.patch("/", async (req, res) => {
     res.status(400).json({ message: err.message });
   }
 });
+
+//Filter by year
+router.get("/filter", async (req, res) => {
+  console.log(req.body)
+  try{
+    const filterCar = await Car.find({model: {$lt: "2017"}})
+    res.json(filterCar)
+  }catch (err) {
+    console.json({ message: err.message })
+  }
+})
 
 //Delete car from database
 router.delete("/:id", getCarById, async (req, res) => {
