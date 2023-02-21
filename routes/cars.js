@@ -7,13 +7,22 @@ const Car = require("../models/car");
 router.get("/", async (req, res) => {
   try {
     const cars = await Car.find();
-    console.log("This came from Car.find()")
     res.json(cars);
   } catch (err) {
-    console.log("This came from Car.find() error")
     res.status(500).json({ message: err.message });
   }
 });
+
+//Filter by year
+router.get("/filter", async (req, res) => {
+  try{
+    const filterCar = await Car.find({modelYear: {$lt: "2017"}})
+    console.log('From the filter route')
+    res.json(filterCar)
+  }catch (err) {
+    console.json({ message: err.message })
+  }
+})
 
 //Get one car from database
 
@@ -78,17 +87,6 @@ router.patch("/", async (req, res) => {
     res.status(400).json({ message: err.message });
   }
 });
-
-//Filter by year
-router.get("/filter", async (req, res) => {
-  console.log(req.body)
-  try{
-    const filterCar = await Car.find({model: {$lt: "2017"}})
-    res.json(filterCar)
-  }catch (err) {
-    console.json({ message: err.message })
-  }
-})
 
 //Delete car from database
 router.delete("/:id", getCarById, async (req, res) => {
