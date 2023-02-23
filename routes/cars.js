@@ -15,14 +15,14 @@ router.get("/", async (req, res) => {
 
 //Filter by year
 router.get("/filter", async (req, res) => {
-  try{
-    const filterCar = await Car.find({modelYear: {$lt: "2017"}})
-    console.log('From the filter route')
-    res.json(filterCar)
-  }catch (err) {
-    console.json({ message: err.message })
+  try {
+    const filterCar = await Car.find({ modelYear: { $lt: "2017" } });
+    console.log("From the filter route");
+    res.json(filterCar);
+  } catch (err) {
+    console.json({ message: err.message });
   }
-})
+});
 
 //Get one car from database
 
@@ -39,7 +39,7 @@ router.post("/", async (req, res) => {
     make: req.body.make,
     currentOwner: req.body.currentOwner,
     registration: req.body.registration,
-    address: req.body.registration,
+    address: req.body.address,
   });
   try {
     const newCar = await car.save();
